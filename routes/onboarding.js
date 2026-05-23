@@ -1,6 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
-const auth = require('../middleware/auth'); // your existing auth middleware
+const auth = require('../middleware/auth'); 
 const router = express.Router();
 
 // PUT /api/onboarding/step2

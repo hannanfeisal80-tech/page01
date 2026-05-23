@@ -3,11 +3,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
-
 const router = express.Router();
 
 // POST /api/auth/signup - Step 1
-router.post('/signup', async (req, res) => {
+router.post('/signup', async (req,res) => {
   try {
     const { firstName, lastName, email, password, cityCountry } = req.body;
     
@@ -20,6 +19,7 @@ router.post('/signup', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     
+    // create and save user
     const user = await User.create({
       firstName, lastName, email, password: hashedPassword, cityCountry, step: 1
     });
@@ -100,6 +100,7 @@ router.put('/step2', auth, async (req, res) => {
 
     res.json(user);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: 'Server error' });
   }
 });
