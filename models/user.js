@@ -14,7 +14,14 @@ const userSchema = new mongoose.Schema({
   // Step 2-4 fields
   bio: { type: String },
   skills: [String ],
-  profilePic: { type: String },
+  mentoringPreference:{
+    type: String,
+    enum: ['give_back', 'maybe_later','learn_now'],
+    default:null
+  },
+ profilePic: { type: String },
+ 
+  cohort: {type: Number,min: 1, max: 15},
 
   createdAt: {type: Date, default: Date.now}
 });
